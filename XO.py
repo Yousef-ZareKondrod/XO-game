@@ -133,48 +133,92 @@ class _XOGame(_XOTable):
 
             return 'the game become equal'
 
+    @staticmethod
+    def one_game():
+        while True:
+            number = int(input('enter the place you want add a sign:'))
+            s = input('enter ether (x and o) or player or player number:')
+            for_exit = input("if you want to exit the game enter 'exit' or leave this : ")
 
-player_one = _Player('yousef', 'x')
+            if s == f'{player_one.name}' or s == f'{player_two.name}':
+                if s == f'{player_one.name}':
+                    s = player_one
+                    # print(s)
+                elif s == f'{player_two.name}':
+                    s = player_two
+                    # print(s)
 
-player_two = _Player('mohamad', 'o')
+            if s == '1' or s == '2':
+                s = int(s)
+            # elif s == x or
+            t1.mark(number, s)
+            print(t1)
+            if for_exit == 'exit':
+                print("'''the game ended by your order'''")
+                print("'''i hoped you enjoyed playing'''")
+                break
+            w = t1.winner()
+            print(f"game status = '''{w}'''")
+            print('\n')
+            # print(player_one.name)
+            # print(player_two.name)
+            if w == f'the winner is : {player_one.name}' or w == f'the winner is : {player_two.name}':
+                break
+        return w
 
+
+class FULLGAME:
+
+    @staticmethod
+    def full_game():
+        win_time_player_one = 0
+        win_time_player_two = 0
+        time = int(input('enter how many time do you want to play(maximum = 5):'))
+        for i in range(0, time):
+            print(f'round : {i+1}\n')
+            this_game = _XOGame.one_game()
+            # print(this_game)
+            if this_game == f'the winner is : {player_one.name}':
+                win_time_player_one += 1
+
+            elif this_game == f'the winner is : {player_two.name}':
+                win_time_player_two += 1
+
+        if win_time_player_one > win_time_player_two:
+            print(f'''the player {player_one.name} has won the full game
+result = {player_one.name}:{win_time_player_one}  ,  {player_two.name}:{win_time_player_two}''')
+
+        if win_time_player_one < win_time_player_two:
+            print(f'''the player {player_two.name} has won the full game
+result = {player_one.name}:{win_time_player_one}  ,  {player_two.name}:{win_time_player_two}''')
+
+
+
+sign1 = ''
+while sign1 != 'x' and sign1 != 'o':
+    name1 = input('enter the player one name:')
+    if name1 == '':
+        name1 = 'player one'
+    sign1 = input('enter the player one sign[x,o]:')
+player_one = _Player(name1, sign1)
+
+
+sign2 = ''
+while sign2 != 'x' and sign2 != 'o':
+    name2 = input('enter the player two name:')
+    if name2 == '':
+        name2 = 'player two'
+    sign2 = input('enter the player two sign:')
+player_two = _Player(name1, sign1)
+
+print(f'{name1} : {sign1}\n{name2} : {sign2}')
 t1 = _XOGame(player_one, player_two)
 print(t1)
 
-
-def one_game():
-    while True:
-        number = int(input('enter the place you want add a sign:'))
-        s = input('enter ether (x and o) or player or player number:')
-        for_exit = input("if you want to exit the game enter 'exit' or leave this : ")
-
-        if s == f'{player_one.name}' or s == f'{player_two.name}':
-            if s == f'{player_one.name}':
-                s = player_one
-                # print(s)
-            elif s == f'{player_two.name}':
-                s = player_two
-                # print(s)
-
-        if s == '1' or s == '2':
-            s = int(s)
-        # elif s == x or
-        t1.mark(number, s)
-        print(t1)
-        if for_exit == 'exit':
-            print("'''the game ended by your order'''")
-            print("'''i hoped you enjoyed playing'''")
-            break
-        w = t1.winner()
-        print(f"game status = '''{w}'''")
-        print('\n')
-        # print(player_one.name)
-        # print(player_two.name)
-        if w == f'the winner is : {player_one.name}' or w == f'the winner is : {player_two.name}':
-            break
+FULLGAME.full_game()
 
 
-one_game()
+# one_game()
 
 
 #
