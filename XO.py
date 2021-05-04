@@ -134,7 +134,6 @@ class _XOGame(_XOTable):
             return 'the game become equal'
 
 
-
 player_one = _Player('yousef', 'x')
 
 player_two = _Player('mohamad', 'o')
@@ -143,38 +142,39 @@ t1 = _XOGame(player_one, player_two)
 print(t1)
 
 
+def one_game():
+    while True:
+        number = int(input('enter the place you want add a sign:'))
+        s = input('enter ether (x and o) or player or player number:')
+        for_exit = input("if you want to exit the game enter 'exit' or leave this : ")
 
-while True:
-    number = int(input('enter the place you want add a sign:'))
-    s = input('enter ether (x and o) or player or player number:')
-    for_exit = input("if you want to exit the game enter 'exit' or leave this : ")
+        if s == f'{player_one.name}' or s == f'{player_two.name}':
+            if s == f'{player_one.name}':
+                s = player_one
+                # print(s)
+            elif s == f'{player_two.name}':
+                s = player_two
+                # print(s)
 
-    if s == f'{player_one.name}' or s == f'{player_two.name}':
-        if s == f'{player_one.name}':
-            s = player_one
-            # print(s)
-        elif s == f'{player_two.name}':
-            s = player_two
-            # print(s)
-
-    if s == '1' or s == '2':
-        s = int(s)
-    # elif s == x or
-    t1.mark(number, s)
-    print(t1)
-    if for_exit == 'exit':
-        print("'''the game ended by your order'''")
-        print("'''i hoped you enjoyed playing'''")
-        break
-    w = t1.winner()
-    print(f"game status = '''{w}'''")
-    print('\n')
-    # print(player_one.name)
-    # print(player_two.name)
-    if w == f'the winner is : {player_one.name}' or w == f'the winner is : {player_two.name}':
-        break
+        if s == '1' or s == '2':
+            s = int(s)
+        # elif s == x or
+        t1.mark(number, s)
+        print(t1)
+        if for_exit == 'exit':
+            print("'''the game ended by your order'''")
+            print("'''i hoped you enjoyed playing'''")
+            break
+        w = t1.winner()
+        print(f"game status = '''{w}'''")
+        print('\n')
+        # print(player_one.name)
+        # print(player_two.name)
+        if w == f'the winner is : {player_one.name}' or w == f'the winner is : {player_two.name}':
+            break
 
 
+one_game()
 
 
 #
