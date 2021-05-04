@@ -193,7 +193,6 @@ result = {player_one.name}:{win_time_player_one}  ,  {player_two.name}:{win_time
 result = {player_one.name}:{win_time_player_one}  ,  {player_two.name}:{win_time_player_two}''')
 
 
-
 sign1 = ''
 while sign1 != 'x' and sign1 != 'o':
     name1 = input('enter the player one name:')
@@ -210,6 +209,9 @@ while sign2 != 'x' and sign2 != 'o':
         name2 = 'player two'
     sign2 = input('enter the player two sign:')
 player_two = _Player(name1, sign1)
+
+if sign1 == sign2:
+    raise Exception('you cant enter the same sign for both')
 
 print(f'{name1} : {sign1}\n{name2} : {sign2}')
 t1 = _XOGame(player_one, player_two)
