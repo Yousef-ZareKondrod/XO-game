@@ -55,12 +55,14 @@ class _XOGame(_XOTable):
         pass
 
     def __init__(self, player1: _Player, player2: _Player) -> None:
+        player1 = player1
+        player2 = player2
         self.player1 = player1
         self.player2 = player2
 
     def _calculate_result(self):
         t = _XOTable()
-        print(t)
+        # print(t)
         winner_player: str
         for i in range(3):
             if self.xo_map[i * 3 + 1] == self.xo_map[i * 3 + 2] == self.xo_map[i * 3 + 3] and\
@@ -121,71 +123,85 @@ class _XOGame(_XOTable):
         if result:
 
             if self.player1.sign == result:
-                return self.player1.name
+                return f'the winner is : {self.player1.name}'
             elif self.player2.sign == result:
-                return self.player2.name
+                return f'the winner is : {self.player2.name}'
         else:
             for i in range(1, 10):
                 if not self.xo_map[i]:
-                    return 'the game is not finished'
+                    return 'the game is not finished yet'
 
             return 'the game become equal'
 
 
 
-a = _Player('yousef', 'x')
+player_one = _Player('yousef', 'x')
 
-b = _Player('mohamad', 'o')
+player_two = _Player('mohamad', 'o')
 
-t1 = _XOGame(a, b)
+t1 = _XOGame(player_one, player_two)
 print(t1)
+
+
 
 while True:
     number = int(input('enter the place you want add a sign:'))
     s = input('enter ether (x and o) or player or player number:')
     for_exit = input("if you want to exit the game enter 'exit' or leave this : ")
-    if s.isnumeric():
-        int(s)
+
+    if s == f'{player_one.name}' or s == f'{player_two.name}':
+        if s == f'{player_one.name}':
+            s = player_one
+            # print(s)
+        elif s == f'{player_two.name}':
+            s = player_two
+            # print(s)
+
+    if s == '1' or s == '2':
+        s = int(s)
     # elif s == x or
     t1.mark(number, s)
     print(t1)
     if for_exit == 'exit':
+        print("'''the game ended by your order'''")
+        print("'''i hoped you enjoyed playing'''")
+        break
+    w = t1.winner()
+    print(f"game status = '''{w}'''")
+    print('\n')
+    # print(player_one.name)
+    # print(player_two.name)
+    if w == f'the winner is : {player_one.name}' or w == f'the winner is : {player_two.name}':
         break
 
 
+
+
+#
 # t1.mark(3, 'x')
 # print(t1)
-#
-# t1.mark(9, 2)
+# t1.mark(9, yousef)
 # print(t1)
-#
 # t1.mark(6, 1)
 # print(t1)
-#
 # t1.mark(2, 2)
 # print(t1)
-#
 # t1.mark(5, 1)
 # print(t1)
-#
 # t1.mark(8, 1)
 # print(t1)
-#
 # t1.mark(1, 1)
 # print(t1)
-#
 # t1.mark(4, 2)
 # print(t1)
-#
 # t1.mark(7, 2)
 # print(t1)
 
-#
 # t1.mark(1,2)
 # t1.mark(2,1)
 # t1.mark(5,2)
 # t1.mark(3,1)
 # t1.mark(9,2)
 # print(t1.xo_map)
-w = t1.winner()
-print(w)
+
+
